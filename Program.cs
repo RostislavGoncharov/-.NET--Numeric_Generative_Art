@@ -1,4 +1,4 @@
-﻿using ImageProcessor;
+﻿using System.Drawing;
 
 internal class Program
 {
@@ -11,7 +11,8 @@ internal class Program
             string input = GetInput();
             numbers = AnalyzeInput(input);
         }
-        Console.WriteLine("Success");
+        
+        ProcessInput(numbers);
     }
 
     static string GetInput()
@@ -29,19 +30,24 @@ internal class Program
 
     static List<int> AnalyzeInput(string input)
     {
-        List<int> numbersToProcess = new List<int>();
+        List<int> numbers = new List<int>();
 
         foreach (char c in input)
         {
             try {
                 int number = Int32.Parse(c.ToString());
-                numbersToProcess.Add(number);
+                numbers.Add(number);
             }
             catch (FormatException) {
                 continue;
             }
         }
 
-        return numbersToProcess;
+        return numbers;
+    }
+
+    static void ProcessInput(List<int> input)
+    {
+        
     }
 }
