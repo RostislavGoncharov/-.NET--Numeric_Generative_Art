@@ -1,8 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "KcsmPTLpbMyv9h4Q7jTRcUNStNZxSv9P9NhEKxTOFZ2n3bUocY7huF6ZRtoiq1o6k9iPVkKw/hP0gRvDEcGc9A==",
+  "dgSpecHash": "fiC9jdU/4KJmPKZ7ss2+lbSoIvC7+Ii8MsCftu2+Wtf7ZzEszYqY0OW5nu2yo2c4mdwobqnBxKBE5mEmhw4z/g==",
   "success": true,
   "projectFilePath": "/Users/rostislav/Documents/dotnet_projects/-.NET--Numeric_Generative_Art-/-.NET--Numeric_Generative_Art-.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "/Users/rostislav/.nuget/packages/imageprocessor/2.9.1/imageprocessor.2.9.1.nupkg.sha512",
+    "/Users/rostislav/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'ImageProcessor 2.9.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "ImageProcessor",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
