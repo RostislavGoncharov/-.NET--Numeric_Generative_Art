@@ -70,7 +70,7 @@ internal class Program
     {
     /*
     Draws a background image, then overlays another image over it
-    for each number in the list. Each overlay's position, rotation and opacity
+    for each number in the list. Each overlay's size, position, rotation and opacity
     are randomized.
     Saves the image to ./images/output.png afterwards.
     */
@@ -82,7 +82,7 @@ internal class Program
                 float opacityIndex = random.NextSingle();
                 float rotationIndex = random.NextSingle() * 360;
                 Point location = new Point(random.Next(-128, 128), random.Next(-128, 128)); 
-                int width = (int)(img.Width * random.NextSingle() * 2) + 128;
+                int width = (int)(img.Width * random.NextSingle() * 2) + 128; // adding 128 seems to help with the "images don't overlap" error
                 Size size = new Size(width);
 
                 Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
@@ -90,11 +90,11 @@ internal class Program
                 Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, location, opacityIndex));
                 img = outputImage;
             }
-        img = ApplyFiltering(img, 0.3f);
+        img = ApplyEffects(img, 0.5f);
         img.Save(Path.Combine(Directory.GetCurrentDirectory(), "images", "output.png"));
     }
 
-    static Image ApplyFiltering(Image input, float probability)
+    static Image ApplyEffects(Image input, float probability)
     {
     // Applies randomized filtering with a given probability.
         if (probability > 1)
