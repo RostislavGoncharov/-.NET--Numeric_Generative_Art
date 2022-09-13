@@ -88,7 +88,28 @@ internal class Program
                 Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, location, opacityIndex));
                 img = outputImage;
             }
-
+        img = ApplyFiltering(img, 0.3f);
         img.Save(Path.Combine(Directory.GetCurrentDirectory(), "images", "output.png"));
+    }
+
+    static Image ApplyFiltering(Image input, float probability)
+    {
+    // Applies randomized filtering with a given probability.
+        if (probability > 1)
+        {
+            probability = 1;
+        }
+
+        Random random = new Random();
+        
+        if (probability >= random.NextSingle()) 
+        {
+            input.Mutate(x => x.GaussianBlur(random.NextSingle()));
+            input.Mutate(x => x.Pixelate(random.Next(5)));
+            input.Mutate(x => x.Glow(random.NextSingle() * 100));
+            input.Mutate(x => x.Saturate(random.NextSingle()));
+        }
+
+        return input;
     }
 }
