@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 
 internal class Program
 {
@@ -48,6 +49,17 @@ internal class Program
 
     static void ProcessInput(List<int> input)
     {
-        
+        Image img = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", "bg.png"));
+            
+            foreach (int number in input)
+            {
+                Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
+                var random = new Random();
+                float opacityIndex = random.NextSingle();
+                Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, opacityIndex));
+                img = outputImage;
+            }
+
+        img.Save(Path.Combine(Directory.GetCurrentDirectory(), "images", "output.png"));
     }
 }
