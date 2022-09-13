@@ -12,6 +12,12 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+    /*
+    Gets user input, derives a list of numbers from it, then uses 
+    the numbers for image generation.
+    If no numbers can be parsed from input, the user is prompted to enter 
+    a number again.
+    */
         List<int> numbers = new List<int>();
 
         while (numbers == null || !numbers.Any())
@@ -25,6 +31,7 @@ internal class Program
 
     static string GetInput()
     {
+    // Prompts the user to provide input until input is not null.
         string? input = null;
 
         while (input == null || input == "")
@@ -38,6 +45,11 @@ internal class Program
 
     static List<int> AnalyzeInput(string input)
     {
+    /*
+    Attempts to derive a list of integers from user input. 
+    The user is allowed to enter any other symbols, 
+    but everything except numbers is ignored (may change in the future).
+    */
         List<int> numbers = new List<int>();
 
         foreach (char c in input)
@@ -56,6 +68,12 @@ internal class Program
 
     static void ProcessInput(List<int> input)
     {
+    /*
+    Draws a background image, then overlays another image over it
+    for each number in the list. Each overlay's position, rotation and opacity
+    are randomized.
+    Saves the image to ./images/output.png afterwards.
+    */
         Image img = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", "bg.png"));
             
             foreach (int number in input)
