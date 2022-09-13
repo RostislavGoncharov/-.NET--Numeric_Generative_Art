@@ -56,7 +56,8 @@ internal class Program
                 Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
                 var random = new Random();
                 float opacityIndex = random.NextSingle();
-                Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, opacityIndex));
+                Point location = new Point(random.Next(-256, 256), random.Next(-256, 256)); 
+                Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, location, opacityIndex));
                 img = outputImage;
             }
 
