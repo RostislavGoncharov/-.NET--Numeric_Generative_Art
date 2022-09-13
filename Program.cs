@@ -81,10 +81,12 @@ internal class Program
                 Random random = new Random();
                 float opacityIndex = random.NextSingle();
                 float rotationIndex = random.NextSingle() * 360;
-                Point location = new Point(random.Next(-256, 256), random.Next(-256, 256)); 
+                Point location = new Point(random.Next(-128, 128), random.Next(-128, 128)); 
+                int width = (int)(img.Width * random.NextSingle() * 2) + 128;
+                Size size = new Size(width);
 
                 Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
-                imageToBlend.Mutate(x => x.Rotate(rotationIndex));
+                imageToBlend.Mutate(x => x.Resize(size).Rotate(rotationIndex));
                 Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, location, opacityIndex));
                 img = outputImage;
             }
@@ -106,7 +108,7 @@ internal class Program
         {
             input.Mutate(x => x.GaussianBlur(random.NextSingle()));
             input.Mutate(x => x.Pixelate(random.Next(5)));
-            input.Mutate(x => x.Glow(random.NextSingle() * 100));
+            input.Mutate(x => x.Glow(random.NextSingle() * 500));
             input.Mutate(x => x.Saturate(random.NextSingle()));
         }
 
