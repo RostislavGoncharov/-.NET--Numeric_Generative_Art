@@ -1,4 +1,11 @@
-﻿using SixLabors.ImageSharp;
+﻿/* 
+This program draws an image based on user input.
+It takes numeric values from the input and draws associated images 
+over the background for each value.
+The ImageSharp package is used for all image operations here.
+*/
+
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
 internal class Program
@@ -53,10 +60,13 @@ internal class Program
             
             foreach (int number in input)
             {
-                Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
-                var random = new Random();
+                Random random = new Random();
                 float opacityIndex = random.NextSingle();
+                float rotationIndex = random.NextSingle() * 360;
                 Point location = new Point(random.Next(-256, 256), random.Next(-256, 256)); 
+
+                Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
+                imageToBlend.Mutate(x => x.Rotate(rotationIndex));
                 Image outputImage = img.Clone(x => x.DrawImage(imageToBlend, location, opacityIndex));
                 img = outputImage;
             }
