@@ -1,7 +1,7 @@
 # -.NET--Numeric_Generative_Art-
 **Version 0.1**   
 **Dependencies:**   
-[ImageSharp](https://www.nuget.org/packages/SixLabors.ImageSharp/)
+- [ImageSharp](https://www.nuget.org/packages/SixLabors.ImageSharp/)
 
 ![Example image](/example_image.png)
 
