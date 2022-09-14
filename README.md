@@ -1,10 +1,9 @@
 # -.NET--Numeric_Generative_Art-
 **Version 0.1**
+**Dependencies:**
+[ImageSharp](https://www.nuget.org/packages/SixLabors.ImageSharp/)
 
 ![Example image](/example_image.png)
-
-**Dependencies**
-[ImageSharp](https://www.nuget.org/packages/SixLabors.ImageSharp/)
 
 ## Description
 This .NET 6.0 console app generates abstract art based on numeric values in user input.
