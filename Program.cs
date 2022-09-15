@@ -107,9 +107,9 @@ internal class Program
         if (probability >= random.NextSingle()) 
         {
             input.Mutate(x => x.GaussianBlur(random.NextSingle()));
-            input.Mutate(x => x.Pixelate(random.Next(5)));
+            input.Mutate(x => x.Pixelate(random.Next(1, 5)));
             input.Mutate(x => x.Glow(random.NextSingle() * 500));
-            input.Mutate(x => x.Saturate(random.NextSingle()));
+            input.Mutate(x => x.Saturate(random.NextSingle() * 2));
         }
 
         return input;
