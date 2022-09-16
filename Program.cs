@@ -81,8 +81,9 @@ internal class Program
                 Random random = new Random();
                 float opacityIndex = random.NextSingle();
                 float rotationIndex = random.NextSingle() * 360;
-                Point location = new Point(random.Next(-128, 128), random.Next(-128, 128)); 
-                int width = (int)(img.Width * random.NextSingle() * 2) + 128; // adding 128 seems to help with the "images don't overlap" error
+                int offset = img.Width / 4;
+                Point location = new Point(random.Next(-offset, offset), random.Next(-offset, offset)); 
+                int width = (int)(img.Width * random.NextSingle() * 2) + offset; // adding offset seems to help with the "images don't overlap" error
                 Size size = new Size(width);
 
                 Image imageToBlend = Image.Load(Path.Combine(Directory.GetCurrentDirectory(), "images", $"{number}.png"));
