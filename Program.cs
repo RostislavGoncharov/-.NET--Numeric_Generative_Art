@@ -7,6 +7,7 @@ The ImageSharp package is used for all image operations here.
 
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
+using System.Diagnostics;
 
 internal class Program
 {
@@ -92,7 +93,10 @@ internal class Program
                 img = outputImage;
             }
         img = ApplyEffects(img, 0.5f);
-        img.Save(Path.Combine(Directory.GetCurrentDirectory(), "images", "output.png"));
+        
+        string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "images", "output.png");
+        img.Save(outputPath);
+        DisplayImage(outputPath);
     }
 
     static Image ApplyEffects(Image input, float probability)
@@ -114,5 +118,13 @@ internal class Program
         }
 
         return input;
+    }
+
+    static void DisplayImage(string path)
+    {
+        Process imageViewer = new Process();
+        imageViewer.StartInfo.FileName = path;
+        imageViewer.StartInfo.UseShellExecute = true;
+        imageViewer.Start();
     }
 }
